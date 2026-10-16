@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABC → MIDI Converter</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/abcjs@6.4.4/dist/abcjs-basic-min.js"></script>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <h1>ABC → MIDI</h1>
+        <p class="subtitle">Paste or upload ABC · preview the score · download MIDI</p>
+      </div>
+      <div class="header-actions">
+        <label class="btn btn-ghost file-btn">
+          Upload
+          <input type="file" id="file-input" accept=".abc,.txt,text/plain" hidden />
+        </label>
+        <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="panel editor-panel">
+        <div class="panel-head">
+          <h2>ABC source</h2>
+        </div>
+        <textarea
+          id="abc-input"
+          spellcheck="false"
+          autocomplete="off"
+          placeholder="Paste ABC notation here…
+
+X:1
+T:Title
+M:4/4
+L:1/8
+K:C
+CDEF GABc|"
+        ></textarea>
+      </section>
+
+      <section class="panel preview-panel">
+        <div class="panel-head">
+          <h2>Score preview</h2>
+        </div>
+        <div class="score-wrap">
+          <div id="score" class="score"></div>
+          <p class="score-empty" id="score-empty">Score appears here when ABC is valid</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bar">
+      <div class="status" id="status" role="status">Ready — paste ABC or upload a file.</div>
+      <div class="bar-actions">
+        <button type="button" class="btn" id="btn-preview" disabled>Preview sound</button>
+        <button type="button" class="btn btn-primary" id="btn-convert">Download MIDI</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
